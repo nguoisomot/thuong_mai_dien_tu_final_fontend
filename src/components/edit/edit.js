@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import "bootstrap/dist/css/bootstrap.min.css";
 import AuthService from "../../services/auth.service";
 
-
+import './edit.css'
 export default class Edit extends Component {
   constructor(props) {
     super(props);
@@ -80,7 +80,8 @@ export default class Edit extends Component {
 
         }}
         render={({ errors, status, touched }) => (
-          <Form>
+          <Form className="form_edit" style={{ width: '50%', margin: 'auto', boxShadow:'box-shadow: 0 0 10px rgba(0,0,0,.5)'}}>
+            <h3 style={{ textAlign: 'center', color: 'rgb(24, 158, 255)', textTransform: 'uppercase'}}>Cập nhật sản phẩm</h3>
             <div className="form-group">
               <label htmlFor="ten_san_pham">Tên sản phẩm</label>
               <Field name="ten_san_pham" type="text" className={'form-control' + (errors.ten_san_pham && touched.ten_san_pham ? ' is-invalid' : '')} />
@@ -111,7 +112,7 @@ export default class Edit extends Component {
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-primary mr-2">Cập nhật</button>
-              <button type="reset" className="btn btn-secondary">Làm mới</button>
+              <button type="reset" className="btn btn-secondary">Xóa trắng</button>
             </div>
           </Form>
         )}

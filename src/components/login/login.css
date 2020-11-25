@@ -1,0 +1,98 @@
+.container_login{
+  height: 100vh;
+  background-color: #F0F2F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login{
+  display: flex;
+  width: 950px;
+  margin: auto;
+  padding: 30px 0;
+
+  
+}
+.login>div{
+  flex: 50%;
+}
+.login-left{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+.login-left >img{
+  width: 100px;
+  height: 100px;
+}
+
+.login-right_inner{
+  width: 400px;
+  border-radius: 5px;
+  padding: 40px;
+    background-color: white;
+}
+.title_email_access{
+  width: 320px;
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+  text-align: center;
+  box-sizing: content-box;
+  margin-bottom: 60px;
+}
+.title_email_access>p{
+  padding: 6px 0;
+  margin: 0;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .login-right_inner */
+.login-right_inner{
+   box-shadow: 0 0 20px rgba(0,0,0,.1);
+}
+.login-right_inner>form>.form-group{
+  margin-bottom: 20px;
+   
+
+}
+.login-right_inner>form>.form-group>label{
+  font-weight: lighter;
+}
+.login-right_inner>form>.form-group>input{
+  width: 322px;
+}
+.form-group>.forgot_password{
+  font-size: 14px;
+  color: #1890ff;
+}
+.btn_login{
+  padding: 7px 20px;
+  background-color: #1890ff;
+  color: white;
+}
+.btn-control{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn_login:hover{
+  color: white;
+  background-color: #0077e7;
+ }
+ .link_register_shop{
+   margin-top: 100px;
+
+ }
+ .link_register_shop>span{
+   font-size: 15px;
+   font-weight: 320;
+   margin-right: 5px;
+ }
+ .link_register_shop>a{
+   color:#1890ff !important;
+   font-size: 16px;
+   cursor: pointer;
+ }

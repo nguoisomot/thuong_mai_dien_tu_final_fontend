@@ -3,8 +3,9 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import "bootstrap/dist/css/bootstrap.min.css";
 import AuthService from "../../services/auth.service";
+import { Button, Toast } from 'react-bootstrap';
 
-
+import './addItem.css'
 export default class AddItems extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,8 @@ export default class AddItems extends Component {
     this.state = {
       images: '',
       nganh_hang: 'điện thoại - máy tính bảng',
-      id_shop: JSON.parse(localStorage.getItem('shop'))._id
+      id_shop: JSON.parse(localStorage.getItem('shop'))._id,
+      showToast:false,
     }
     this.danhSachNganhHang = {
       'Điện thoại - máy tính bảng': 'Điện thoại - máy tính bảng',
@@ -32,8 +34,20 @@ export default class AddItems extends Component {
     this.setState({ nganh_hang: e.target.value });
     console.log(this.state.nganh_hang)
   }
+  // onShowToast(){
+  //   this.setState({ showToast: true})
+  // }
   render() {
+    
     return (
+      <>
+        <Toast className="toast" onClose={() => this.setState({showToast: false})} show={this.state.showToast} delay={2500} autohide>
+          <Toast.Header>
+            <strong className="mr-auto">Thông báo</strong>
+           
+          </Toast.Header>
+          <Toast.Body style={{ color:'#29b714',fontWeight:'bold'}}>Đã thêm thành công</Toast.Body>
+        </Toast>
       <Formik
         initialValues={{
           id_shop: '',
@@ -71,14 +85,19 @@ export default class AddItems extends Component {
           }
           // formData.append('hinh_anh', fields.hinh_anh)
           AuthService.addItem(formData)
-            .then(alert(formData))
-            .catch(err => {
-              alert('Lỗi: ' + err)
-            })
+            .then(
+             // alert(formData)
+              this.setState({ showToast: true })
+             
+              )
+            // .catch(err => {
+            //   alert('Lỗi: ' + err)
+            // })
 
         }}
         render={({ errors, status, touched }) => (
-          <Form>
+          <Form className="form_item" style={{ width: '50%', margin: 'auto', padding:'10px 20px' }}>
+            <h3 style={{ textAlign: 'center', color: 'rgb(24, 158, 255)',textTransform:'uppercase' }}>Thêm sản phẩm mới</h3>
             <div className="form-group">
               <label htmlFor="ten_san_pham">Tên sản phẩm</label>
               <Field name="ten_san_pham" type="text" className={'form-control' + (errors.ten_san_pham && touched.ten_san_pham ? ' is-invalid' : '')} />
@@ -105,15 +124,17 @@ export default class AddItems extends Component {
             </div>
             <div className="form-group">
               <label htmlFor="hinh_anh">Hình ảnh</label>
-              <input name="hinh_anh" type="file" accept=".jpg,.png" className='form-control' required multiple onChange={this.onChangeFile} />
+              <input name="hinh_anh" type="file" accept=".jpg,.png,.jfif" className='form-control' required multiple onChange={this.onChangeFile} />
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-primary mr-2">Register</button>
-              <button type="reset" className="btn btn-secondary">Reset</button>
+              <button type="submit" className="btn btn-primary mr-2" >Thêm sản phẩm</button>
+              <button type="reset" className="btn btn-secondary">Xóa trắng</button>
             </div>
           </Form>
+          
         )}
       />
+   </>
     )
   }
 }

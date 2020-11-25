@@ -40,6 +40,16 @@ class AuthService {
       id_san_pham
     });
   }
+  getAllItemsOrder(id_shop) {
+    return axios.post(API_URL + "getAllItemsOrder", {
+      id_shop
+    });
+  }
+  getInfoUser(id_user) {
+    return axios.post(API_URL + "getInfoUser", {
+      id_user
+    });
+  }
 }
 
 export default new AuthService();

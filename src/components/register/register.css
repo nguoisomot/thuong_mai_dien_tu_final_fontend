@@ -1,0 +1,25 @@
+.form_register-inner{
+  width: 630px;
+  margin: auto;
+  padding: 30px 0 0 0;
+}
+.form-group_register{
+
+}
+.container-form_register{
+  width: 630px;
+  margin: auto;
+  padding: 0 20px;
+}
+.form_register-inner>div{
+    display: flex;
+    justify-content: space-between;
+}
+.form_register-inner>div>label{
+  font-weight: bold;
+  flex: 50%;
+  font-size: 14px;
+}
+.form_register-inner>div>div{
+  flex: 40%;
+}

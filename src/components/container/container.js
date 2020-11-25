@@ -12,6 +12,7 @@ import ReceiptIcon from "@material-ui/icons/Receipt";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import DesktopWindowsIcon from "@material-ui/icons/DesktopWindows";
 import SettingsIcon from "@material-ui/icons/Settings";
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import Sidebar from "../sidebar/sidebar";
 import "./container.css";
 
@@ -25,28 +26,32 @@ function Container(props) {
     //window.alert(JSON.stringify(item, null, 2));
     //console.log('additems')
     history.push("/manager");
-  
+
   }
   function onClickAddItem(e, item) {
-   history.push("/addItems");
-  
+    history.push("/addItems");
+
   }
   function onClick(e, item) {
-    if (item.name === 'them_san_pham'){
+    if (item.name === 'them_san_pham') {
       console.log("Router")
       history.push("/addItems");
     }
-    else if (item.name === 'quan_ly_san_pham'){
+    else if (item.name === 'quan_ly_san_pham') {
       console.log("Router")
       history.push("/manager");
     }
-    else{
+    else if (item.name === 'quan_ly_san_pham') {
+      console.log("Router")
+      history.push("/manager");
+    }
+    else {
       history.push("/addItems");
       // console.log("item: " + JSON.stringify(item))
       console.log("item: " + JSON.stringify(item.name))
     }
-  
-  
+
+
   }
   const items = [
     { name: "trang_chu", label: "Trang Chủ", Icon: HomeIcon },
@@ -56,7 +61,7 @@ function Container(props) {
       Icon: ReceiptIcon,
       items: [
         // add icon /////////////////////////////////
-       // { name: "cho_xac_nhan", label: "Chờ xác nhận", Icon: HomeIcon, onClick },
+        // { name: "cho_xac_nhan", label: "Chờ xác nhận", Icon: HomeIcon, onClick },
         { name: "cho_xac_nhan", label: "Chờ xác nhận" },
         { name: "da_xac_nhan", label: "Đã xác nhận" }
       ]
@@ -66,7 +71,7 @@ function Container(props) {
       name: "san_pham",
       label: "Sản Phẩm",
       Icon: DvrIcon,
-      items: [     
+      items: [
         { name: "them_san_pham", label: "Thêm Sản Phẩm", onClick },
         { name: "quan_ly_san_pham", label: "Quản Lý", onClick },
         "divider",
@@ -91,16 +96,21 @@ function Container(props) {
       ]
     },
     "divider",
-    {
-      name: 'Thêm sản phẩm mới',
-      label: 'Thêm sản phẩm mới',
-      
-    }
+    { name: "dang_xuat", label: "Đăng xuất", Icon: PowerSettingsNewIcon }
   ];
-  return (
-    <div className="over-body ">
-      <Sidebar items={items} className="static"/>
-      <div className="screen-work">{props.children}</div>
+  document.body.style.backgroundColor = '#F0F2F5';
+
+  return ( 
+    <div className="over-body">
+      <div className="static">
+        <Sidebar items={items} />
+      </div>
+
+      <div className="screen-work">
+        <header style={{ backgroundColor:'#189eff'}}><p style={{padding:'20px',textAlign:'center',color:'white',fontSize:'24px',fontWeight:'bold'}}>Trang Quản Trị Cửa Hàng Nicky</p></header>
+        <div className="component_child">{props.children}</div>
+        
+      </div>
     </div>
   );
 }

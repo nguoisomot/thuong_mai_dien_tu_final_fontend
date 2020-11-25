@@ -13,6 +13,7 @@
     "dotenv": "^8.2.0",
     "formik": "^2.2.1",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
@@ -21,12 +22,12 @@
     "web-vitals": "^0.2.4",
     "yup": "^0.29.3"
   },
-"scripts": {
-  "start": "SET PORT=8000 && react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test --env=jsdom",
-  "eject": "react-scripts eject"
-},
+  "scripts": {
+    "start": "SET PORT=8000 && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -63,7 +63,7 @@ export default class Manager extends Component {
     return (
       <div>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered" style={{marginBottom:'0'}}>
           <thead>
             <tr>
               <th scope="col">STT</th>

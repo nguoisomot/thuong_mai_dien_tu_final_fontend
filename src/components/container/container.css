@@ -16,9 +16,8 @@ code {
 }
 
 .sidebar {
-  max-width: 240px;
+  width: 240px;
   height: 100vh;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: rgb(11 27 83);
   color: rgb(211, 209, 209);
 }
@@ -61,9 +60,15 @@ code {
   font-weight: bold;
 }
 .screen-work{
-  margin-left: 176.775px;
-  padding-left: 5%;
+  width: calc(100vw - 260px);
+  margin-left: 290px;
+  margin-right:100px;
+  
+box-shadow: 0 0 7px rgba(0,0,0,.5);  background-color: white;
 }
 .modal-backdrop{
   background-color:rgba(0, 0, 0, 0.31) !important;
+}
+.component_child{
+  padding: 10px;
 }
