@@ -9,6 +9,7 @@ import AddItems from './components/addItems/addItems';
 import Manager from './components/manager/manager';
 import Edit from './components/edit/edit';
 import DonHang from './components/DonHang/donHang';
+import ThongKe from './components/ThongKe/thongKe';
 import Modal from './components/modal/modal';
 class App extends Component {
   constructor(props) {
@@ -35,9 +36,10 @@ class App extends Component {
                 <Switch>  <Route path="/register" component={Register} />
                   <Route path="/edit/:idItem" component={Edit} />
                   <Route path="/addItems" component={AddItems} />  
-                  <Route path="/donHang" component={DonHang} />
+                  <Route path="/donhang" component={DonHang} />
                   <Route path="/modal" component={Modal} />
                   <Route path="/manager" component={Manager} />
+                  <Route path="/thongke" component={ThongKe} />
                   <Route path="/" component={Manager} />
                 
                   </Switch>

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Title from '../title/title'
 export default class Manager extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +63,7 @@ export default class Manager extends Component {
   render() {
     return (
       <div>
-
+        <Title title="Quản lý sản phẩm"/>
         <table class="table table-bordered" style={{marginBottom:'0'}}>
           <thead>
             <tr>

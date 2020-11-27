@@ -13,6 +13,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import DesktopWindowsIcon from "@material-ui/icons/DesktopWindows";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Sidebar from "../sidebar/sidebar";
 import "./container.css";
 
@@ -45,6 +46,14 @@ function Container(props) {
       console.log("Router")
       history.push("/manager");
     }
+    else if (item.name === 'don_hang') {
+      console.log("Router")
+      history.push("/donhang");
+    }
+    else if (item.name === 'thong_ke') {
+      console.log("Router")
+      history.push("/thongke");
+    }
     else {
       history.push("/addItems");
       // console.log("item: " + JSON.stringify(item))
@@ -59,10 +68,11 @@ function Container(props) {
       name: "don_hang",
       label: "Đơn Hàng",
       Icon: ReceiptIcon,
+      onClick ,
       items: [
         // add icon /////////////////////////////////
         // { name: "cho_xac_nhan", label: "Chờ xác nhận", Icon: HomeIcon, onClick },
-        { name: "cho_xac_nhan", label: "Chờ xác nhận" },
+        { name: "cho_xac_nhan", label: "Chờ xác nhận"},
         { name: "da_xac_nhan", label: "Đã xác nhận" }
       ]
     },
@@ -93,6 +103,19 @@ function Container(props) {
             { name: "sms", label: "SMS" }
           ]
         }
+      ]
+    },
+    "divider",
+    {
+      name: "thong_ke",
+      label: "Thống Kế",
+      Icon: EqualizerIcon,
+      onClick,
+      items: [
+        // add icon /////////////////////////////////
+        // { name: "cho_xac_nhan", label: "Chờ xác nhận", Icon: HomeIcon, onClick },
+        { name: "cho_xac_nhan", label: "Chờ xác nhận" },
+        { name: "da_xac_nhan", label: "Đã xác nhận" }
       ]
     },
     "divider",
