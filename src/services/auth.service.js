@@ -6,33 +6,44 @@ const API_URL = "http://localhost:3001/";
 class AuthService {
 
   login(email, password) {
-    return axios.post(API_URL + "login", {
+    return axios.post(API_URL + "loginShop", {
       email,
       password
     })
   }
 
   register(ten_shop, ho_va_ten, email, sdt, password) {
-    return axios.post(API_URL + "register", {
+    return axios.post(API_URL + "registerShop", {
       ten_shop,ho_va_ten, email, sdt, password
     });
   };
 
   // add item into shop
-  addItem(formData) {
-    return axios.post(API_URL + "add", formData, {
+  themSanPham(formData) {
+    return axios.post(API_URL + "themSanPham", formData, {
       
     });
   }
   // update item of shop
-  updateItem(formData) {
-    return axios.post(API_URL + "updateItem", formData, {
+  capNhatSanPham(formData) {
+    return axios.post(API_URL + "capNhatSanPham", formData, {
     });
   }
 
+  uploadImage(data){
+    return axios.post(API_URL + "uploadImage",  {
+      data
+    }); 
+  }
+  uploadMultipleImage(data){
+    return axios.post(API_URL + "uploadMultipleImage", data,  {
+      
+    }); 
+  }
+
   // get all items
-   getAll(id_shop){
-     return axios.post(API_URL + "getAllData", {id_shop });
+  sanPhamShop(idShop){
+    return axios.post(API_URL + "sanPhamShop", {idShop });
   }
   // delte item
   deleteItem(id_san_pham) {
@@ -71,7 +82,37 @@ class AuthService {
       year,id_shop
     });
   }
-  
+  thongKeTheoCacNgayTrongThang(year,id_shop) {
+    return axios.post(API_URL + "thongKeTheoCacNgayTrongThang", {
+      year,id_shop
+    });
+  }
+
+  sanPhamBanChayHomNay(date1, date2, id_shop) {
+    return axios.post(API_URL + "sanPhamBanChayHomNay", {
+      date1, date2, id_shop
+    });
+  }
+  sanPhamBanChayThangNay(month, id_shop) {
+    return axios.post(API_URL + "sanPhamBanChayThangNay", {
+      month ,id_shop
+    });
+  }
+  sanPhamBanChayTuDauNamDenNay(year, id_shop) {
+    return axios.post(API_URL + "sanPhamBanChayTuDauNamDenNay", {
+      year ,id_shop
+    });
+  }
+  sanPhamBanChayCacThangTrongNam(year, id_shop) {
+    return axios.post(API_URL + "sanPhamBanChayCacThangTrongNam", {
+      year ,id_shop
+    });
+  }
+  sanPhamBanChayCacNgayTrongThang(month, id_shop) {
+    return axios.post(API_URL + "sanPhamBanChayCacNgayTrongThang", {
+      month ,id_shop
+    });
+  }
 }
 
 export default new AuthService();

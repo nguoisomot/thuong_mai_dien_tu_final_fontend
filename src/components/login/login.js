@@ -28,19 +28,21 @@ export default class Login extends React.Component {
         onSubmit={fields => {
           AuthService.login(fields.email, fields.password)
             .then(response => {
-              if (response.data.data) {
-                localStorage.setItem("shop", JSON.stringify(response.data.data));
-              }
-              //localStorage.setItem("email", JSON.stringify(fields.email));
-              this.props.history.push('/manager')
+              console.log(response)
+              if (response.status == 200) {
+                this.setState({ showStatusErrorLogin: true })
+                localStorage.setItem("shop", JSON.stringify(response.data.shop));      
+                window.location.reload()       
+                this.props.history.push('/manager')
+                
+              }          
               console.log(response.data)
             })
             .catch(err => {
               this.setState({ showStatusErrorLogin: true })
               console.log('username or password không chính xác')
             })
-          // alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
-          // this.props.history.push('/home');
+         
         }}
         render={({ errors, status, touched }) => (
           <div className="container_login">
@@ -73,7 +75,7 @@ export default class Login extends React.Component {
                     <Field name="password" type="text" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
                     <ErrorMessage name="password" component="div" className="invalid-feedback" />
                   </div>
-                  {this.state.showStatusErrorLogin ? <div style={{ color: 'red', marginBottom: '10px' }}>Username or Password is wrong</div> : null}
+                  {this.state.showStatusErrorLogin ? <div style={{ color: 'red', marginBottom: '10px' }}>Email hoặc mật khẩu không chính xác</div> : null}
                   <div className="form-group btn-control">
                     <a style={{cursor:'pointer'}} className="forgot_password">Quên mật khẩu</a>
                     <button type="submit" className="btn btn_login">Đăng nhập</button>                  

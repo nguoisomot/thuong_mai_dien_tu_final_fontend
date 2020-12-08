@@ -73,18 +73,18 @@ export default class AddItems extends Component {
         })}
         onSubmit={fields => {
           var formData = new FormData();
-          formData.append('id_shop', this.state.id_shop);
-          formData.append('ten_san_pham', fields.ten_san_pham);
-          formData.append('nganh_hang', this.state.nganh_hang);
+          formData.append('idShop', this.state.id_shop);
+          formData.append('tenSanPham', fields.ten_san_pham);
+          formData.append('nganhHang', this.state.nganh_hang);
           formData.append('gia', fields.gia);
-          formData.append('so_luong', fields.so_luong);
+          formData.append('soLuong', fields.so_luong);
 
           for (const key of Object.keys(this.state.images)) {
             console.log(this.state.images[key])
             formData.append('hinh_anh', this.state.images[key])
           }
           // formData.append('hinh_anh', fields.hinh_anh)
-          AuthService.addItem(formData)
+          AuthService.themSanPham(formData)
             .then(
              // alert(formData)
               this.setState({ showToast: true })

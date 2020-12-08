@@ -45,17 +45,17 @@ export default class Manager extends Component {
     console.log("index: "+index)
   }
   getData() {
-    AuthService.getAll(JSON.parse(localStorage.getItem('shop'))._id).then(res => {
+    AuthService.sanPhamShop(JSON.parse(localStorage.getItem('shop'))._id).then(res => {
       this.setState({ data: res.data.data });
-      console.log(typeof this.state.data)
-      console.log(this.state.data.length)
+      // console.log(res.data)
+      // console.log(this.state.data.length)
     }).catch(localStorage.setItem("error", JSON.stringify(JSON.parse(localStorage.getItem('shop'))._id)))
 
   }
   async componentDidMount() {
-    await AuthService.getAll(JSON.parse(localStorage.getItem('shop'))._id).then(res => {
+    await AuthService.sanPhamShop(JSON.parse(localStorage.getItem('shop'))._id).then(res => {
       this.setState({ data: res.data.data });
-      console.log(typeof this.state.data)
+      console.log(res.data.data)
       console.log(this.state.data.length)
     })
   }
@@ -64,7 +64,7 @@ export default class Manager extends Component {
     return (
       <div>
         <Title title="Quản lý sản phẩm"/>
-        <table class="table table-bordered" style={{marginBottom:'0'}}>
+        {this.state.data.length === 0 ? <h3>Không có dữ liệu</h3> : <table class="table table-bordered" style={{ marginBottom: '0' }}>
           <thead>
             <tr>
               <th scope="col">STT</th>
@@ -77,22 +77,23 @@ export default class Manager extends Component {
           </thead>
 
           <tbody >
-           
+
             {this.state.data.map((item, index) => {
               return <tr key={item._id}>
                 <th scope="row">{index + 1}</th>
-                <td>{item.ten_san_pham}</td>
+                <td>{item.tenSanPham}</td>
                 <td>{item.gia}</td>
-                <td>{item.nganh_hang}</td>
+                <td>{item.nganhHang}</td>
 
                 <td>
                   {item.hinh_anh ? item.hinh_anh.map((i, id) => {
-                    console.log(i[0]);
-                    return (item.hinh_anh[id] ? <img style={{ width: "50px", height: "50px", padding: "5px" }} src={"http://127.0.0.1:5500/app/public/" + item.hinh_anh[id]} />:<img/>)
+                    console.log(item.hinh_anh[id].url);
+                    return (item.hinh_anh[id] ? <img style={{ width: "50px", height: "50px", padding: "5px" }} src={ item.hinh_anh[id].url+""} /> : <img />)
+                   
                   }) : <img />}
                 </td>
                 <td>
-                  <Link to={"/edit/"+item._id}><FaPen style={{ fontSize: '28px', color: 'blue', padding: '5px' }} /></Link>
+                  <Link to={"/edit/" + item._id}><FaPen style={{ fontSize: '28px', color: 'blue', padding: '5px' }} /></Link>
                   <Button style={{ background: "white", border: 'none' }} onClick={() => this.toggleDelete(item._id, index)}>
                     <FaTrash style={{ fontSize: '28px', color: 'red', padding: '5px' }} ></FaTrash>
                   </Button>
@@ -112,7 +113,7 @@ export default class Manager extends Component {
             })}
           </tbody>
         </table>
-
+}
       </div>
     )
   }

@@ -60,19 +60,18 @@ export default class Edit extends Component {
         })}
         onSubmit={fields => {
           var formData = new FormData();
-          formData.append('_id', this.state.idItem);
-          formData.append('id_shop', this.state.id_shop);
-          formData.append('ten_san_pham', fields.ten_san_pham);
-          formData.append('nganh_hang', this.state.nganh_hang);
+          formData.append('idSanPham', this.state.idItem);
+          formData.append('tenSanPham', fields.ten_san_pham);
+          formData.append('nganhHang', this.state.nganh_hang);
           formData.append('gia', fields.gia);
-          formData.append('so_luong', fields.so_luong);
+          formData.append('soLuong', fields.so_luong);
 
           for (const key of Object.keys(this.state.images)) {
             console.log(this.state.images[key])
             formData.append('hinh_anh', this.state.images[key])
           }
           // formData.append('hinh_anh', fields.hinh_anh)
-          AuthService.updateItem(formData)
+          AuthService.capNhatSanPham(formData)
             .then(alert(formData))
             .catch(err => {
               alert('Lỗi: ' + err)
@@ -108,7 +107,7 @@ export default class Edit extends Component {
             </div>
             <div className="form-group">
               <label htmlFor="hinh_anh">Hình ảnh</label>
-              <input name="hinh_anh" type="file" accept=".jpg,.png" className='form-control' required multiple onChange={this.onChangeFile} />
+              <input name="hinh_anh" type="file" accept=".jpg,.png,.jfif" className='form-control' required multiple onChange={this.onChangeFile} />
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-primary mr-2">Cập nhật</button>

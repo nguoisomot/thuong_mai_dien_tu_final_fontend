@@ -50,9 +50,20 @@ function Container(props) {
       console.log("Router")
       history.push("/donhang");
     }
-    else if (item.name === 'thong_ke') {
+    else if (item.name === 'doanh_thu') {
       console.log("Router")
       history.push("/thongke");
+    }
+    else if (item.name === 'ban_chay') {
+      console.log("Router")
+      history.push("/banchay");
+    }
+    else if (item.name === 'dang_xuat') {
+      localStorage.removeItem("shop")
+      console.log("Router")
+      history.push("/login");
+      window.location.reload();
+
     }
     else {
       history.push("/addItems");
@@ -110,16 +121,16 @@ function Container(props) {
       name: "thong_ke",
       label: "Thống Kế",
       Icon: EqualizerIcon,
-      onClick,
+     
       items: [
         // add icon /////////////////////////////////
         // { name: "cho_xac_nhan", label: "Chờ xác nhận", Icon: HomeIcon, onClick },
-        { name: "cho_xac_nhan", label: "Chờ xác nhận" },
-        { name: "da_xac_nhan", label: "Đã xác nhận" }
+        { name: "doanh_thu", label: "Doanh thu",onClick },
+        { name: "ban_chay", label: "Bán Chạy", onClick }
       ]
     },
     "divider",
-    { name: "dang_xuat", label: "Đăng xuất", Icon: PowerSettingsNewIcon }
+    { name: "dang_xuat", label: "Đăng xuất", Icon: PowerSettingsNewIcon,onClick }
   ];
   document.body.style.backgroundColor = '#F0F2F5';
 

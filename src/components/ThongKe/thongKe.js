@@ -30,7 +30,8 @@ export default class ThongKe extends Component{
     var date_thang= new Date()
     AuthService.thongKeTheoThang((date_thang.getYear() - 100 + 2000)+"-"+(date_thang.getMonth()+1), JSON.parse(localStorage.getItem('shop'))._id).then(data=>{
       try {
-        this.setState({doanh_thu_thang_nay:data.data.data[0].count})
+        this.setState({doanh_thu_thang_nay:data.data.data[0].count});
+        console.log(data)
       } catch (error) {
         this.setState({ doanh_thu_thang_nay: 0 })
       }

@@ -10,13 +10,13 @@ export default class LineDemo extends Component {
     super(props)
     this.state = {
       // boolean show chart
-      showChart:false,
+      showChart: false,
       // data thống kê danh thu các tháng trong năm
       months: [],
       giaMonth: [],
       // data thống kê danh thu các ngày trong tháng
-      days:[],
-      giaDay:[],
+      days: [],
+      giaDay: [],
 
 
       dataMonthAuth: [],
@@ -24,7 +24,7 @@ export default class LineDemo extends Component {
         labels: ["One", "tow", "three", "four"],
         datasets: [
           {
-            label: 'Doanh thu các tháng trong năm 2020',
+            label: 'Sản phẩm bán chạy trong năm 2020',
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(75,192,192,0.4)',
@@ -53,7 +53,7 @@ export default class LineDemo extends Component {
         labels: ["One", "tow", "three", "four"],
         datasets: [
           {
-            label: 'Doanh thu các ngày trong tháng '+ (dayPublic.getMonth()+1)+' 2020',
+            label: 'sản phẩm bán chạy trong tháng ' + (dayPublic.getMonth() + 1) + ' 2020',
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(75,02,192,0.4)',
@@ -81,22 +81,22 @@ export default class LineDemo extends Component {
   }
   showChart = () => {
     // theo tháng
-    this.setState({showChart:true})
+    this.setState({ showChart: true })
     var monthArray = [];
     var dataArray = [];
     var dataMonth = {};
-    
-    
+
+
 
     this.state.dataMonthAuth.map((value, index) => {
-      monthArray.push(value._id.month);
-      dataArray.push(value.Total)
+      monthArray.push(value._id.ten_san_pham);
+      dataArray.push(value.so_luong)
     })
     console.log(monthArray)
     console.log(dataArray)
 
     monthArray.map((value, index) => {
-      return monthArray[index] = "Tháng " + value
+      return monthArray[index] =  value
     })
     dataMonth = { ...this.state.dataMonth };
 
@@ -110,17 +110,17 @@ export default class LineDemo extends Component {
     var dayArray = [];
     var dataGiaDay = [];
     var dataDay = [];
-   
+
 
 
     this.state.dataDayAuth.map((value, index) => {
-      dayArray.push(value._id.day);
-      dataGiaDay.push(value.Total)
+      dayArray.push(value._id.ten_san_pham);
+      dataGiaDay.push(value.so_luong)
     })
 
-    
+
     dayArray.map((value, index) => {
-      return dayArray[index] = "ngày " + value
+      return dayArray[index] = value
     })
     dataDay = { ...this.state.dataDay };
 
@@ -133,9 +133,9 @@ export default class LineDemo extends Component {
     let arrayLabels = [];
     let arrayData = [];
     var dataFinal = null;
-    AuthService.thongKeTheoQuaCacThang((date.getYear() - 100 + 2000), JSON.parse(localStorage.getItem('shop'))._id).then(data => this.setState({ dataMonthAuth: data.data.data }))
-    AuthService.thongKeTheoCacNgayTrongThang((date.getYear() - 100 + 2000), JSON.parse(localStorage.getItem('shop'))._id).then(data => this.setState({ dataDayAuth: data.data.data }))
- 
+    AuthService.sanPhamBanChayCacThangTrongNam((date.getYear() - 100 + 2000), JSON.parse(localStorage.getItem('shop'))._id).then(data => this.setState({ dataMonthAuth: data.data.data }))
+    AuthService.sanPhamBanChayCacNgayTrongThang("2020-11", JSON.parse(localStorage.getItem('shop'))._id).then(data => this.setState({ dataDayAuth: data.data.data }))
+
 
 
 
@@ -144,42 +144,43 @@ export default class LineDemo extends Component {
     return (
       <>
         <button onClick={this.showChart}>Show chart</button>
-         {this.state.showChart ? <div>
-         <h3>Biểu đồ</h3>
-         <div style={{ width: '100%',display:'flex' }}>
-         
-         
-          
-          <div style={{ width: "45%", marginRight: '5%' }} >
-             <Bar ref="chart" data={this.state.dataMonth}
-            options={{
-              scales: {
-                yAxes: [{
-                  ticks: {
-                    beginAtZero: true
+        {this.state.showChart ? <div>
+          <h3>Biểu đồ</h3>
+          <div style={{ width: '100%', display: 'flex' }}>
+
+
+
+            <div style={{ width: "45%", marginRight: '5%' }} >
+              <Bar ref="chart" data={this.state.dataMonth}
+                options={{
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        beginAtZero: true
+                      }
+                    }]
                   }
-                }]
-              }
-            }}
-          />
-          </div>
-          <div style={{ width: "45%" }} >
-            <Bar ref="chart" data={this.state.dataDay}
-            options={{
-              scales: {
-                yAxes: [{
-                  ticks: {
-                    beginAtZero: true
+                }}
+              />
+            </div>
+            <div style={{ width: "45%" }} >
+              <Bar ref="chart" data={this.state.dataDay}
+                options={{
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        beginAtZero: true,
+                      
+                      }
+                    }]
                   }
-                }]
-              }
-            }}
-          />
-          </div>
+                }}
+              />
+            </div>
           </div>
           {/* <Bar ref="chart" data={this.state.data} style={{padding:'20px 0'}}/> */}
-        </div> : <div></div> }
-    </>
+        </div> : <div></div>}
+      </>
     );
   }
 }
